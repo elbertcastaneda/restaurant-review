@@ -1,4 +1,4 @@
 {
-  "*.+(js|jsx)": ["eslint ./src/ --max-warnings 0 --fix"],
+  "*.+(js|jsx)": ["eslint --max-warnings 0 --fix", "stylelint"],
   "*.+(json|css|md)": ["prettier --write"]
 }
