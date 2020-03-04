@@ -22,6 +22,10 @@
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
+    "ignorePatterns": [
+      "build/",
+      "node_modules/"
+    ],
     "extends": [
       "react-app",
       "airbnb",
@@ -35,7 +39,19 @@
       "prettier"
     ],
     "rules": {
-      "semi": 2,
+      "max-len": [
+        "error",
+        {
+          "code": 100,
+          "tabWidth": 2,
+          "ignoreRegExpLiterals": true,
+          "ignoreUrls": true
+        }
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
       "react/jsx-filename-extension": [
         1,
         {
@@ -48,7 +64,8 @@
       "prettier/prettier": [
         "error",
         {
-          "semi": true
+          "singleQuote": true,
+          "printWidth": 100
         }
       ]
     }
@@ -74,6 +91,10 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
     "prettier": "^1.19.1",
+    "stylelint": "^13.2.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0",
     "typescript": "^3.8.3",
     "typescript-eslint": "^0.0.1-alpha.0"
   }

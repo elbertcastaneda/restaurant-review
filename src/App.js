@@ -1,11 +1,27 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from 'react';
+
+import styled from 'styled-components';
+
+import './App.css';
+import logo from './logo.svg';
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
+
+// Create a Wrapper component that'll render a <section> tag with some styles
+const Wrapper = styled.section`
+  padding: 4em;
+  background: papayawhip;
+`;
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Title>Hello world</Title>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -16,7 +32,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          <Wrapper>Learn React</Wrapper>
         </a>
       </header>
     </div>
