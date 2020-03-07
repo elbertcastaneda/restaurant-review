@@ -4,30 +4,22 @@ import logo from './logo.svg';
 
 const Root = styled.div`
   text-align: center;
-`;
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`;
-
-const Header = styled.header`
-  background-color: #282c34;
-  min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+`;
+
+const AppLink = styled.a`
+  color: #61dafb;
 `;
 
 const AppLogo = styled.img.attrs({
   src: logo,
   alt: 'logo'
 })`
-  height: 40vmin;
+  height: 64px;
   pointer-events: none;
 
   @keyframes App-logo-spin {
@@ -46,13 +38,28 @@ const AppLogo = styled.img.attrs({
   }
 `;
 
-const AppLink = styled.a`
-  color: #61dafb;
+const Header = styled.header`
+  width: 100%;
+  background-color: #282c34;
+  height: 25vh;
 `;
 
-const Wrapper = styled.section`
-  padding: 4em;
-  background: papayawhip;
+const Body = styled.main`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 `;
 
-export default { Root, Header, AppLogo, Title, AppLink, Wrapper };
+const SectionLeft = styled.section`
+  background-color: orange;
+  width: 70%;
+  height: 75vh;
+`;
+
+const SectionRight = styled.section`
+  background-color: fuchsia;
+  width: 30%;
+  height: 75vh;
+`;
+
+export default { Root, AppLogo, AppLink, Header, Body, SectionLeft, SectionRight };

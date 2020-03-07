@@ -6,11 +6,12 @@ import * as serviceWorker from './serviceWorker';
 
 import App from './components/App';
 import GlobalStyle from './components/GlobalStyle.styled';
+import Map from './components/Map';
 
 ReactDOM.render(
   <>
     <GlobalStyle />
-    <App />
+    <App leftSide={<Map />} rightSide={<span>Hello</span>} />
   </>,
   document.getElementById('app-render')
 );
