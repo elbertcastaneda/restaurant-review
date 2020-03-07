@@ -4,14 +4,13 @@ import ReactDOM from 'react-dom';
 
 import * as serviceWorker from './serviceWorker';
 
-import App from './components/App';
 import GlobalStyle from './components/GlobalStyle.styled';
-import Map from './components/Map';
+import App from './containers/App';
 
 ReactDOM.render(
   <>
     <GlobalStyle />
-    <App leftSide={<Map />} rightSide={<span>Hello</span>} />
+    <App />
   </>,
   document.getElementById('app-render')
 );
