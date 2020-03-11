@@ -1,0 +1,212 @@
+[
+  {
+    "id": "584dc83acf49f0c2bb6b9b00a939f28f8fad48b5",
+    "restaurantName": "TACOS MARTIN",
+    "address": "Calle Independencia 567 A, La Villa, 45100 Zapopan",
+    "position": {
+      "lat": 20.723293,
+      "lng": -103.394824
+    },
+    "ratings": []
+  },
+  {
+    "id": "584dc83acf49f0c2bb5b9b00a939f28e8fad48b6",
+    "restaurantName": "Camino Real Guadalajara",
+    "address": "Avenida Ignacio Luis Vallarta 5005 Chapalita, Camino Real, Guadalajara",
+    "position": {
+      "lat": 20.6750852,
+      "lng": -103.4098169
+    },
+    "ratings": []
+  },
+  {
+    "id": "58a2b4196c117e720d097a838199cf304ef77172",
+    "restaurantName": "Quinta Real Guadalajara",
+    "address": "Avenida México 2727, Vallarta Norte, Guadalajara",
+    "position": {
+      "lat": 20.6792719,
+      "lng": -103.3851415
+    },
+    "ratings": []
+  },
+  {
+    "id": "01f1bfe861cd2f9efdceeaa460a82027fbd72658",
+    "restaurantName": "Victoria Ejecutivo Guadalajara",
+    "address": "Avenida Adolfo López Mateos Sur 1360, Chapalita, Guadalajara",
+    "position": {
+      "lat": 20.66411189999999,
+      "lng": -103.3951164
+    },
+    "ratings": []
+  },
+  {
+    "id": "4358aa26fb275d20a4632735c903725bda20f54d",
+    "restaurantName": "Casa Pedro Loza",
+    "address": "Calle Pedro Loza 360, Zona Centro, Guadalajara",
+    "position": {
+      "lat": 20.6820278,
+      "lng": -103.3483361
+    },
+    "ratings": []
+  },
+  {
+    "id": "e19abc1d0aa923c7344dd6fdb8327b8a625f6f7f",
+    "restaurantName": "Real Inn Guadalajara Expo",
+    "address": "Avenida Mariano Otero 1326, Chapalita, Guadalajara",
+    "position": {
+      "lat": 20.655606,
+      "lng": -103.391468
+    },
+    "ratings": []
+  },
+  {
+    "id": "8d221348e610a7cde95ea1962b030a951e47a972",
+    "restaurantName": "Burger King",
+    "address": "Av. Mariano Otero Local 1C Zona F1, Rinconada del Sol, Zapopan",
+    "position": {
+      "lat": 20.64941019999999,
+      "lng": -103.4020996
+    },
+    "ratings": []
+  },
+  {
+    "id": "d997ba8ba0a7e2c067e3f578ea8727aca72b488d",
+    "restaurantName": "Santo Coyote",
+    "address": "Calle Miguel Lerdo de Tejada 2379, Arcos, Guadalajara",
+    "position": {
+      "lat": 20.6704864,
+      "lng": -103.3770294
+    },
+    "ratings": []
+  },
+  {
+    "id": "7d6409400649336a2339ad75cde767456af3c4d7",
+    "restaurantName": "Cafeto",
+    "address": "Avenida Montevideo 3194, Providencia, Guadalajara",
+    "position": {
+      "lat": 20.6967251,
+      "lng": -103.3896932
+    },
+    "ratings": []
+  },
+  {
+    "id": "a9b652327257e17a6a11f7c0a946cfe79989872e",
+    "restaurantName": "Punto Sao Paulo",
+    "address": "Avenida de las Américas 1545, Providencia, Guadalajara",
+    "position": {
+      "lat": 20.7019852,
+      "lng": -103.3766174
+    },
+    "ratings": []
+  },
+  {
+    "id": "3a156f87df98d536e8f838a1a445f66dab51e3a5",
+    "restaurantName": "Monique",
+    "address": "Avenida Unión 410, Obrera, Guadalajara",
+    "position": {
+      "lat": 20.668985,
+      "lng": -103.373646
+    },
+    "ratings": []
+  },
+  {
+    "id": "00c28713339be3d9c852103346fecacf8b187850",
+    "restaurantName": "Mr. Pampas Guadalajara",
+    "address": "Avenida Mariano Otero 1985, Victoria, Zapopan",
+    "position": {
+      "lat": 20.647446,
+      "lng": -103.403963
+    },
+    "ratings": []
+  },
+  {
+    "id": "69e53fac7ea39b427382ef4e7d577d56b285f954",
+    "restaurantName": "Hotel Isabel",
+    "address": "Calle José Guadalupe Montenegro 1572, Americana, Guadalajara",
+    "position": {
+      "lat": 20.6693846,
+      "lng": -103.3600569
+    },
+    "ratings": []
+  },
+  {
+    "id": "05f934f38125cfac594c8902505e32bad0c0a9cd",
+    "restaurantName": "Domino's Revolución",
+    "address": "Avenida Revolución 2212, Sutaj, Guadalajara",
+    "position": {
+      "lat": 20.6512074,
+      "lng": -103.3112465
+    },
+    "ratings": []
+  },
+  {
+    "id": "d2815efd59e77d23e35ff08da660ea242e3cea75",
+    "restaurantName": "Burger King Patria",
+    "address": "Avenida Patria 5029, Jardines de la Patria, Zapopan",
+    "position": {
+      "lat": 20.6864223,
+      "lng": -103.4205169
+    },
+    "ratings": []
+  },
+  {
+    "id": "e732269f93b2b2bd7783a916ea69af0683226618",
+    "restaurantName": "Restaurante La Casa de Doña Ines",
+    "address": "Avenida Pablo Neruda 2323, Providencia, Guadalajara",
+    "position": {
+      "lat": 20.6993646,
+      "lng": -103.3763962
+    },
+    "ratings": []
+  },
+  {
+    "id": "87dfe9c5e485e8b9a91e916442baf0cabcdc5323",
+    "restaurantName": "The Mens Club Guadalajara",
+    "address": "Calzada Lázaro Cárdenas 3898, Jardín de San Ignacio, Zapopan",
+    "position": {
+      "lat": 20.6715646,
+      "lng": -103.405345
+    },
+    "ratings": []
+  },
+  {
+    "id": "24e310ba7da487491bbc51a4ee8fdbfba822f65f",
+    "restaurantName": "Karne Garibaldi Santa Tere",
+    "address": "Calle Garibaldi 1306, Santa Teresita, Guadalajara",
+    "position": {
+      "lat": 20.6813889,
+      "lng": -103.3663889
+    },
+    "ratings": []
+  },
+  {
+    "id": "73021df15c508e6c211dddd9ad51b4c6c75bdfa8",
+    "restaurantName": "Playa Brasil",
+    "address": "Calle Quetzal 64, Moderna, Guadalajara",
+    "position": {
+      "lat": 20.65923,
+      "lng": -103.3575881
+    },
+    "ratings": []
+  },
+  {
+    "id": "026816ff8fc1e28c16d6fb3b32e4b8747f609dcf",
+    "restaurantName": "Los Chilaquiles Lázaro Cárdenas",
+    "address": "Calzada Lázaro Cárdenas 2729, Jardines del Bosque, Zapopan",
+    "position": {
+      "lat": 20.6601333,
+      "lng": -103.3861166
+    },
+    "ratings": []
+  },
+  {
+    "id": "5eb837b430951c98530ee8d9f301e69920d09e00",
+    "restaurantName": "Asador La Vaca Argentina Pérgolas",
+    "address": "Calle Tomás V. Gómez 25, Ladron De Guevara, Guadalajara",
+    "position": {
+      "lat": 20.676072,
+      "lng": -103.3827701
+    },
+    "ratings": []
+  }
+]

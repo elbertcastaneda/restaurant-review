@@ -7,18 +7,19 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // restaurants: []
+      restaurants: []
     };
   }
 
-  handleChangeRestaurants = restaurants => {
-    // eslint-disable-next-line no-console
-    console.log(restaurants);
-    // this.setState({ restaurants });
-  };
+  componentDidMount() {
+    fetch('/restaurant-review/api/restaurants.json')
+      .then(r => r.json())
+      .then(restaurants => this.setState({ restaurants }));
+  }
 
   renderMap() {
-    return <RestaurantsMap changeRestaurants={this.handleChangeRestaurants} />;
+    const { restaurants } = this.state;
+    return <RestaurantsMap restaurants={restaurants} />;
   }
 
   render() {

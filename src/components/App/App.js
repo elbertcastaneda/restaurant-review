@@ -2,8 +2,6 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import cs from '../Components.styled';
-
 import s from './App.styled';
 
 function App({ leftSide, rightSide }) {
@@ -11,12 +9,7 @@ function App({ leftSide, rightSide }) {
     <s.Root>
       <s.Header>
         <s.AppLogo />
-        <p>
-          Edit <cs.Code>src/App</cs.Code> and save to reload.
-        </p>
-        <s.AppLink href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </s.AppLink>
+        <p>Restaurant review.</p>
       </s.Header>
       <s.Body>
         <s.SectionLeft>{leftSide}</s.SectionLeft>

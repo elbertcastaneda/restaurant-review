@@ -11,14 +11,11 @@ const Root = styled.div`
   color: white;
 `;
 
-const AppLink = styled.a`
-  color: #61dafb;
-`;
-
 const AppLogo = styled.img.attrs({
   src: logo,
   alt: 'logo'
 })`
+  margin-top: 20px;
   height: 64px;
   pointer-events: none;
 
@@ -33,7 +30,7 @@ const AppLogo = styled.img.attrs({
 
   @media (prefers-reduced-motion: no-preference) {
     & {
-      animation: App-logo-spin infinite 20s linear;
+      animation: App-logo-spin infinite 4s linear;
     }
   }
 `;
@@ -54,12 +51,14 @@ const SectionLeft = styled.section`
   background-color: orange;
   width: 70%;
   height: 75vh;
+  position: relative;
 `;
 
 const SectionRight = styled.section`
   background-color: fuchsia;
   width: 30%;
   height: 75vh;
+  position: relative;
 `;
 
-export default { Root, AppLogo, AppLink, Header, Body, SectionLeft, SectionRight };
+export default { Root, AppLogo, Header, Body, SectionLeft, SectionRight };
