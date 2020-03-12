@@ -32,17 +32,43 @@ export default class RestaurantsMap extends Component {
   }
 
   getSnapshotBeforeUpdate(prevProps) {
-    const { restaurants } = this.props;
+    const { restaurants, selectedRestaurant } = this.props;
 
-    if (prevProps.restaurants.length !== restaurants.length) {
-      return restaurants;
+    if (prevProps.restaurants !== restaurants) {
+      return { updateRestaurants: true };
     }
+
+    if (prevProps.selectedRestaurant !== selectedRestaurant && selectedRestaurant) {
+      return { updateSelectedRestaurant: true };
+    }
+
     return null;
   }
 
-  componentDidUpdate(prevProps, prevState, restaurants) {
-    if (restaurants !== null) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // eslint-disable-next-line no-console
+    console.log('trying updating');
+    if (snapshot && snapshot.updateRestaurants) {
+      // eslint-disable-next-line no-console
+      console.log('updating');
       this.updateRestaurantMarkers();
+    }
+
+    if (snapshot && snapshot.updateSelectedRestaurant) {
+      const {
+        selectedRestaurant: { id }
+      } = this.props;
+      const {
+        google: {
+          maps: {
+            event: { trigger }
+          }
+        }
+      } = window;
+      // eslint-disable-next-line no-console
+      console.log('updating selected restaurant', this.restaurantMarkers.get(id).marker);
+
+      trigger(this.restaurantMarkers.get(id).marker, 'click');
     }
   }
 
@@ -88,7 +114,7 @@ export default class RestaurantsMap extends Component {
     } = this;
     const {
       google: {
-        maps: { Point, Size, Marker, Animation }
+        maps: { Point, Size, Marker, Animation, InfoWindow }
       }
     } = window;
 
@@ -112,12 +138,28 @@ export default class RestaurantsMap extends Component {
             title: restaurantName,
             animation: Animation.DROP
           });
+          const contentString = `<img
+              src="https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${position.lat},${position.lng}&fov=80&heading=70&pitch=0&key=AIzaSyBwYHIy3nSGNk4Tm-HfoXQpOHbGEyA-RmA"
+              alt=""
+            />
+          `;
+
+          const infoWindow = new InfoWindow({
+            content: contentString
+          });
+
           marker.addListener('click', function restaurantMarkerClick() {
             this.map.setZoom(13);
             this.map.setCenter(this.getPosition());
+            Array.from(restaurantMarkers.values())
+              .filter(r => r.id !== id)
+              .forEach(({ infoWindow: iw }) => iw.close());
+            setTimeout(() => {
+              infoWindow.open(this.map, marker);
+            }, 1000);
           });
 
-          restaurantMarkers.set(id, { ...restaurant, marker });
+          restaurantMarkers.set(id, { ...restaurant, marker, infoWindow });
         }, 600 + 20 * iPlace);
       });
   };
@@ -146,15 +188,20 @@ export default class RestaurantsMap extends Component {
   }
 }
 
+const restaurantShape = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  restaurantName: PropTypes.string.isRequired,
+  position: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired
+  }).isRequired
+});
+
 RestaurantsMap.propTypes = {
-  restaurants: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      restaurantName: PropTypes.string.isRequired,
-      position: PropTypes.shape({
-        lat: PropTypes.number.isRequired,
-        lng: PropTypes.number.isRequired
-      }).isRequired
-    })
-  ).isRequired
+  restaurants: PropTypes.arrayOf(restaurantShape).isRequired,
+  selectedRestaurant: restaurantShape
+};
+
+RestaurantsMap.defaultProps = {
+  selectedRestaurant: null
 };

@@ -55,10 +55,10 @@ const SectionLeft = styled.section`
 `;
 
 const SectionRight = styled.section`
-  background-color: fuchsia;
+  background-color: #8c92ac;
   width: 30%;
   height: 75vh;
-  position: relative;
+  overflow-y: auto;
 `;
 
 export default { Root, AppLogo, Header, Body, SectionLeft, SectionRight };

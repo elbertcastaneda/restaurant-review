@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 
 import AppComponent from '../../components/App';
+import RestaurantsList from '../../components/RestaurantsList';
 import RestaurantsMap from '../../components/RestaurantsMap';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurants: []
+      restaurants: [],
+      selectedRestaurant: null
     };
   }
 
@@ -17,13 +19,25 @@ export default class App extends Component {
       .then(restaurants => this.setState({ restaurants }));
   }
 
+  handleClickRestaurant = selectedRestaurant => {
+    this.setState({ selectedRestaurant });
+  };
+
   renderMap() {
+    const { restaurants, selectedRestaurant } = this.state;
+    return <RestaurantsMap restaurants={restaurants} selectedRestaurant={selectedRestaurant} />;
+  }
+
+  renderList() {
     const { restaurants } = this.state;
-    return <RestaurantsMap restaurants={restaurants} />;
+    return (
+      <RestaurantsList restaurants={restaurants} onClickRestaurant={this.handleClickRestaurant} />
+    );
   }
 
   render() {
     const map = this.renderMap();
-    return <AppComponent leftSide={map} rightSide={<span>Hello</span>} />;
+    const list = this.renderList();
+    return <AppComponent leftSide={map} rightSide={list} />;
   }
 }
