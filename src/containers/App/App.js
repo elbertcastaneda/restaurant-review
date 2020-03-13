@@ -29,9 +29,20 @@ export default class App extends Component {
   }
 
   renderList() {
-    const { restaurants } = this.state;
+    const { restaurants, selectedRestaurant } = this.state;
     return (
-      <RestaurantsList restaurants={restaurants} onClickRestaurant={this.handleClickRestaurant} />
+      <>
+        <RestaurantsList
+          className={selectedRestaurant ? '' : 'selected'}
+          restaurants={restaurants}
+          onClickRestaurant={this.handleClickRestaurant}
+        />
+        <div className={selectedRestaurant ? 'selected' : ''}>
+          <button type="button" onClick={() => this.setState({ selectedRestaurant: null })}>
+            Form
+          </button>
+        </div>
+      </>
     );
   }
 

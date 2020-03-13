@@ -51,11 +51,13 @@ const Button = styled.button.attrs({ type: 'button' })`
 
 const Card = React.forwardRef(({ onClick, children }, ref) => (
   <Item>
-    <Button onClick={onClick} forwardedRef={ref}>
+    <Button onClick={onClick} ref={ref}>
       {children}
     </Button>
   </Item>
 ));
+
+Card.displayName = 'RestaurantsListCard';
 
 Card.propTypes = {
   onClick: PropTypes.func,

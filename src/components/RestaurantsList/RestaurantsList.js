@@ -21,8 +21,9 @@ export default class RestaurantList extends Component {
   }
 
   render() {
+    const { className } = this.props;
     const restaurants = this.renderRestaurants();
-    return <s.List>{restaurants}</s.List>;
+    return <s.List className={className}>{restaurants}</s.List>;
   }
 }
 
@@ -33,5 +34,6 @@ RestaurantList.propTypes = {
       restaurantName: PropTypes.string.isRequired
     })
   ).isRequired,
-  onClickRestaurant: PropTypes.func.isRequired
+  onClickRestaurant: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired
 };

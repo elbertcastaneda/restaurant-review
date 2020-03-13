@@ -38,7 +38,7 @@ export default class RestaurantsMap extends Component {
       return { updateRestaurants: true };
     }
 
-    if (prevProps.selectedRestaurant !== selectedRestaurant && selectedRestaurant) {
+    if (prevProps.selectedRestaurant !== selectedRestaurant) {
       return { updateSelectedRestaurant: true };
     }
 
@@ -55,9 +55,7 @@ export default class RestaurantsMap extends Component {
     }
 
     if (snapshot && snapshot.updateSelectedRestaurant) {
-      const {
-        selectedRestaurant: { id }
-      } = this.props;
+      const { selectedRestaurant } = this.props;
       const {
         google: {
           maps: {
@@ -65,10 +63,13 @@ export default class RestaurantsMap extends Component {
           }
         }
       } = window;
-      // eslint-disable-next-line no-console
-      console.log('updating selected restaurant', this.restaurantMarkers.get(id).marker);
 
-      trigger(this.restaurantMarkers.get(id).marker, 'click');
+      if (selectedRestaurant) {
+        trigger(this.restaurantMarkers.get(selectedRestaurant.id).marker, 'click');
+      } else {
+        const { restaurantMarkers } = this;
+        Array.from(restaurantMarkers.values()).forEach(({ infoWindow: iw }) => iw.close());
+      }
     }
   }
 
@@ -123,7 +124,7 @@ export default class RestaurantsMap extends Component {
       .forEach((restaurant, iPlace) => {
         const { id, restaurantName, position } = restaurant;
         const image = {
-          url: 'https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png',
+          url: 'http://localhost:3000/restaurant-review/static/media/logo.7e873e41.svg',
           size: new Size(64, 64),
           origin: new Point(0, 0),
           anchor: new Point(17, 34),
@@ -156,7 +157,7 @@ export default class RestaurantsMap extends Component {
               .forEach(({ infoWindow: iw }) => iw.close());
             setTimeout(() => {
               infoWindow.open(this.map, marker);
-            }, 1000);
+            }, 100);
           });
 
           restaurantMarkers.set(id, { ...restaurant, marker, infoWindow });
