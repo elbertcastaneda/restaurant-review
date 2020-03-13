@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/restaurant-review/static/js/main.7cc0f1be.chunk.js",
-    "main.js.map": "/restaurant-review/static/js/main.7cc0f1be.chunk.js.map",
+    "main.js": "/restaurant-review/static/js/main.1b2c3391.chunk.js",
+    "main.js.map": "/restaurant-review/static/js/main.1b2c3391.chunk.js.map",
     "runtime-main.js": "/restaurant-review/static/js/runtime-main.803c1854.js",
     "runtime-main.js.map": "/restaurant-review/static/js/runtime-main.803c1854.js.map",
-    "static/js/2.ea1df488.chunk.js": "/restaurant-review/static/js/2.ea1df488.chunk.js",
-    "static/js/2.ea1df488.chunk.js.map": "/restaurant-review/static/js/2.ea1df488.chunk.js.map",
+    "static/js/2.23accc91.chunk.js": "/restaurant-review/static/js/2.23accc91.chunk.js",
+    "static/js/2.23accc91.chunk.js.map": "/restaurant-review/static/js/2.23accc91.chunk.js.map",
     "index.html": "/restaurant-review/index.html",
-    "precache-manifest.d81b74d95e5408c29ce898924ba02b20.js": "/restaurant-review/precache-manifest.d81b74d95e5408c29ce898924ba02b20.js",
+    "precache-manifest.1693c77d993b95bf7bcddeeb5da3ee39.js": "/restaurant-review/precache-manifest.1693c77d993b95bf7bcddeeb5da3ee39.js",
     "service-worker.js": "/restaurant-review/service-worker.js",
-    "static/js/2.ea1df488.chunk.js.LICENSE.txt": "/restaurant-review/static/js/2.ea1df488.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/restaurant-review/static/media/logo.5d5d9eef.svg"
+    "static/js/2.23accc91.chunk.js.LICENSE.txt": "/restaurant-review/static/js/2.23accc91.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/restaurant-review/static/media/logo.7e873e41.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.803c1854.js",
-    "static/js/2.ea1df488.chunk.js",
-    "static/js/main.7cc0f1be.chunk.js"
+    "static/js/2.23accc91.chunk.js",
+    "static/js/main.1b2c3391.chunk.js"
   ]
 }
