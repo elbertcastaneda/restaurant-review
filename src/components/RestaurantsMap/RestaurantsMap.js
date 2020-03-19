@@ -88,6 +88,9 @@ export default class RestaurantsMap extends Component {
           lat,
           lng
         };
+        const { onMapLoaded } = this.props;
+
+        onMapLoaded(map, position);
         setTimeout(() => {
           this.setState({ gettingCurrentPosition: false });
           const currentPositionMarker = new Marker({
@@ -97,7 +100,6 @@ export default class RestaurantsMap extends Component {
             title: 'Your position'
           });
           currentPositionMarker.addListener('click', function currentPositionMarkerClick() {
-            map.setZoom(13);
             map.setCenter(this.getPosition());
           });
         }, 400);
@@ -150,7 +152,6 @@ export default class RestaurantsMap extends Component {
           });
 
           marker.addListener('click', function restaurantMarkerClick() {
-            this.map.setZoom(13);
             this.map.setCenter(this.getPosition());
             Array.from(restaurantMarkers.values())
               .filter(r => r.id !== id)
@@ -200,7 +201,8 @@ const restaurantShape = PropTypes.shape({
 
 RestaurantsMap.propTypes = {
   restaurants: PropTypes.arrayOf(restaurantShape).isRequired,
-  selectedRestaurant: restaurantShape
+  selectedRestaurant: restaurantShape,
+  onMapLoaded: PropTypes.func.isRequired
 };
 
 RestaurantsMap.defaultProps = {

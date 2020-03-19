@@ -13,11 +13,41 @@ export default class App extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch('/restaurant-review/api/restaurants.json')
-      .then(r => r.json())
-      .then(restaurants => this.setState({ restaurants }));
-  }
+  handleMapLoaded = (map, { lat, lng }) => {
+    const request = {
+      location: new window.google.maps.LatLng(lat, lng),
+      radius: '3000',
+      type: ['restaurant']
+    };
+
+    const service = new window.google.maps.places.PlacesService(map);
+    // eslint-disable-next-line no-console
+    service.nearbySearch(request, places => {
+      this.setState({
+        restaurants: places.map(place => {
+          const {
+            id,
+            name: restaurantName,
+            vicinity: address,
+            geometry: { location },
+            rating
+          } = place;
+
+          return {
+            id,
+            restaurantName,
+            address,
+            position: {
+              lat: location.lat(),
+              lng: location.lng()
+            },
+            rating,
+            rates: []
+          };
+        })
+      });
+    });
+  };
 
   handleClickRestaurant = selectedRestaurant => {
     this.setState({ selectedRestaurant });
@@ -25,7 +55,13 @@ export default class App extends Component {
 
   renderMap() {
     const { restaurants, selectedRestaurant } = this.state;
-    return <RestaurantsMap restaurants={restaurants} selectedRestaurant={selectedRestaurant} />;
+    return (
+      <RestaurantsMap
+        restaurants={restaurants}
+        selectedRestaurant={selectedRestaurant}
+        onMapLoaded={this.handleMapLoaded}
+      />
+    );
   }
 
   renderList() {
