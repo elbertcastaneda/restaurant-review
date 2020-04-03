@@ -17,9 +17,14 @@ const Item = styled.li`
   list-style: none;
   width: 100%;
   margin: 0 0 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 5px;
 `;
 
-const Button = styled.button.attrs({ type: 'button' })`
+const CardBody = styled.div`
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -28,8 +33,11 @@ const Button = styled.button.attrs({ type: 'button' })`
   overflow: hidden;
   border: none;
   font: inherit;
-  width: calc(100% - 20px);
+  width: 250px;
   min-height: 50px;
+
+  padding: 5px;
+
   &::after {
     clear: both;
   }
@@ -45,15 +53,53 @@ const Button = styled.button.attrs({ type: 'button' })`
 
   &:hover {
     background-color: lightgray;
+  }
+`;
+
+const ButtonReviews = styled.button.attrs({ type: 'button' })`
+  background-color: #0074d9;
+  border-radius: 4px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  border: none;
+  padding: 7px;
+
+  &::after {
+    clear: both;
+  }
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+  }
+
+  &:focus {
+    background-color: #7fdbff;
+  }
+
+  &:hover {
+    background-color: #7fdbff;
     cursor: pointer;
   }
 `;
 
-const Card = React.forwardRef(({ onClick, children }, ref) => (
+const Image = styled.img`
+  border: 1px solid gray;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: calc(100% - 5px);
+  height: 150px;
+`;
+
+const Card = React.forwardRef(({ onClick, children, imageSrc }, ref) => (
   <Item>
-    <Button onClick={onClick} ref={ref}>
+    <CardBody onClick={onClick} ref={ref}>
+      <Image src={imageSrc} />
       {children}
-    </Button>
+    </CardBody>
   </Item>
 ));
 
@@ -64,15 +110,17 @@ Card.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
+  imageSrc: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {
-  onClick: () => {}
+  onClick: () => {},
 };
 
 export default {
   List,
-  Card
+  Card,
+  ButtonReviews,
 };

@@ -11,24 +11,50 @@ export default class RestaurantsMap extends Component {
     this.map = null;
     this.restaurantMarkers = new Map();
     this.state = {
-      gettingCurrentPosition: false
+      gettingCurrentPosition: false,
     };
   }
 
   componentDidMount() {
     const {
       google: {
-        maps: { Map: GoogleMap }
-      }
+        maps: { event, Map: GoogleMap },
+      },
     } = window;
 
     this.map = new GoogleMap(this.mapRef.current, {
       center: { lat: 20.6995456, lng: -103.35027199999999 },
-      zoom: 13
+      zoom: 13,
+    });
+
+    event.addListener(this.map, 'click', (evt) => {
+      this.addPlace(evt);
     });
 
     this.updateCurrentPositionMarker();
     this.updateRestaurantMarkers();
+  }
+
+  // eslint-disable-next-line react/sort-comp
+  addPlace(event) {
+    const { onAddPlace } = this.props;
+    const {
+      google: {
+        maps: { Marker },
+      },
+    } = window;
+
+    if (this.addingMarker) {
+      this.addingMarker.setMap(null);
+      this.addingMarker = null;
+    }
+
+    const marker = new Marker({
+      position: event.latLng,
+      map: this.map,
+    });
+    this.addingMarker = marker;
+    onAddPlace(marker);
   }
 
   getSnapshotBeforeUpdate(prevProps) {
@@ -39,7 +65,9 @@ export default class RestaurantsMap extends Component {
     }
 
     if (prevProps.selectedRestaurant !== selectedRestaurant) {
-      return { updateSelectedRestaurant: true };
+      if (selectedRestaurant && selectedRestaurant.id > 0) {
+        return { updateSelectedRestaurant: true };
+      }
     }
 
     return null;
@@ -59,9 +87,9 @@ export default class RestaurantsMap extends Component {
       const {
         google: {
           maps: {
-            event: { trigger }
-          }
-        }
+            event: { trigger },
+          },
+        },
       } = window;
 
       if (selectedRestaurant) {
@@ -77,8 +105,8 @@ export default class RestaurantsMap extends Component {
     const { map } = this;
     const {
       google: {
-        maps: { Animation, Marker }
-      }
+        maps: { Animation, Marker },
+      },
     } = window;
 
     if (navigator.geolocation) {
@@ -86,7 +114,7 @@ export default class RestaurantsMap extends Component {
       navigator.geolocation.getCurrentPosition(({ coords: { latitude: lat, longitude: lng } }) => {
         const position = {
           lat,
-          lng
+          lng,
         };
         const { onMapLoaded } = this.props;
 
@@ -97,7 +125,7 @@ export default class RestaurantsMap extends Component {
             map,
             position,
             animation: Animation.DROP,
-            title: 'Your position'
+            title: 'Your position',
           });
           currentPositionMarker.addListener('click', function currentPositionMarkerClick() {
             map.setCenter(this.getPosition());
@@ -113,24 +141,25 @@ export default class RestaurantsMap extends Component {
     const {
       map,
       restaurantMarkers,
-      props: { restaurants }
+      props: { restaurants },
     } = this;
     const {
       google: {
-        maps: { Point, Size, Marker, Animation, InfoWindow }
-      }
+        maps: { Point, Size, Marker, Animation, InfoWindow },
+      },
     } = window;
 
     restaurants
-      .filter(p => !Array.from(restaurantMarkers.keys()).includes(p.id))
+      .filter((p) => !Array.from(restaurantMarkers.keys()).includes(p.id))
       .forEach((restaurant, iPlace) => {
-        const { id, restaurantName, position } = restaurant;
+        const { id, icon, restaurantName, position } = restaurant;
+
         const image = {
-          url: 'http://localhost:3000/restaurant-review/static/media/logo.7e873e41.svg',
+          url: icon,
           size: new Size(64, 64),
           origin: new Point(0, 0),
           anchor: new Point(17, 34),
-          scaledSize: new Size(25, 25)
+          scaledSize: new Size(25, 25),
         };
 
         setTimeout(() => {
@@ -139,7 +168,7 @@ export default class RestaurantsMap extends Component {
             position,
             icon: image,
             title: restaurantName,
-            animation: Animation.DROP
+            animation: Animation.DROP,
           });
           const contentString = `<img
               src="https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${position.lat},${position.lng}&fov=80&heading=70&pitch=0&key=AIzaSyBwYHIy3nSGNk4Tm-HfoXQpOHbGEyA-RmA"
@@ -148,13 +177,13 @@ export default class RestaurantsMap extends Component {
           `;
 
           const infoWindow = new InfoWindow({
-            content: contentString
+            content: contentString,
           });
 
           marker.addListener('click', function restaurantMarkerClick() {
             this.map.setCenter(this.getPosition());
             Array.from(restaurantMarkers.values())
-              .filter(r => r.id !== id)
+              .filter((r) => r.id !== id)
               .forEach(({ infoWindow: iw }) => iw.close());
             setTimeout(() => {
               infoWindow.open(this.map, marker);
@@ -195,16 +224,17 @@ const restaurantShape = PropTypes.shape({
   restaurantName: PropTypes.string.isRequired,
   position: PropTypes.shape({
     lat: PropTypes.number.isRequired,
-    lng: PropTypes.number.isRequired
-  }).isRequired
+    lng: PropTypes.number.isRequired,
+  }).isRequired,
 });
 
 RestaurantsMap.propTypes = {
   restaurants: PropTypes.arrayOf(restaurantShape).isRequired,
   selectedRestaurant: restaurantShape,
-  onMapLoaded: PropTypes.func.isRequired
+  onMapLoaded: PropTypes.func.isRequired,
+  onAddPlace: PropTypes.func.isRequired,
 };
 
 RestaurantsMap.defaultProps = {
-  selectedRestaurant: null
+  selectedRestaurant: null,
 };

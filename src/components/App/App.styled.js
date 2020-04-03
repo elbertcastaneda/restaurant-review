@@ -17,7 +17,7 @@ const Root = styled.div`
 
 const AppLogo = styled.img.attrs({
   src: logo,
-  alt: 'logo'
+  alt: 'logo',
 })`
   height: 48px;
   pointer-events: none;
@@ -40,9 +40,10 @@ const AppLogo = styled.img.attrs({
 
 const Header = styled.header`
   width: 100%;
-  background-color: #282c34;
-  height: 15vh;
-  padding-top: 20px;
+  background: #00b4db; /* fallback for old browsers */
+  background: linear-gradient(to right, #00b4db, #0083b0);
+  height: calc(15vh - 10px);
+  padding-top: 10px;
   p {
     margin: 5px 0px;
   }
@@ -57,15 +58,17 @@ const Body = styled.main`
 
 const SectionLeft = styled.section`
   background-color: orange;
-  width: 70%;
+  width: 80%;
   height: 85vh;
   overflow-x: hidden;
   position: relative;
 `;
 
 const SectionRightWrapper = styled.section`
-  background-color: #8c92ac;
-  width: 30%;
+  background: #3c3b3f; /* fallback for old browsers */
+  background: linear-gradient(to right, #605c3c, #3c3b3f);
+  width: 20%;
+  min-width: 300px;
   height: 85vh;
   overflow-x: hidden;
   display: flex;
@@ -77,21 +80,27 @@ const SlideContent = styled.div`
   flex-flow: row nowrap;
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
   > * {
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
     visibility: hidden;
+    opacity: 0;
     width: 0;
 
     &.selected {
       visibility: visible;
+      opacity: 1;
       width: 100%;
       margin-left: 0px;
+      overflow-y: inherit;
     }
 
     &:first-child:not(.selected) {
       width: 100%;
       margin-left: -100%;
+      opacity: 0;
+      overflow-y: hidden;
     }
   }
 `;
@@ -108,8 +117,8 @@ SectionRight.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default { Root, AppLogo, Header, Body, SectionLeft, SectionRight };
